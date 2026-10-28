@@ -1,112 +1,93 @@
-# Study plan: 27 Oct → exam on Mon 9 Nov 2026
+# 7-day plan: pass the AP exam (Mon 9 Nov 2026)
 
-13 study days. The course follows a single thread (one APL interpreter that grows each week), so the plan follows the same order: **evaluator → monads → parser → free monads → testing → concurrency → week 7**. After that come the mock exams.
+**The idea:** the exam is open book, has short answers, and asks you to reason about code you have already seen. So you do not need to memorise the course. You need three skills:
+1. **Find** the right answer in your notes in under a minute → `EXAM-NOTES.md` is already written. Print it and learn its layout.
+2. **Understand** each topic well enough to **adapt** a model answer to a new expression → the daily drills.
+3. **Write** short answers under time pressure → the two mock exams.
 
-The exam asks you to *reason about code you have seen*, not to write new code. Every day is therefore built around reading code and predicting what it does, then checking your prediction.
+**When:** 7 consecutive days. The default is **Mon 2 Nov → Sun 8 Nov**. If you start earlier, keep the same order and use the spare days to repeat Days 6–7.
 
-## The daily routine (≈4–5 h)
+**Time:** about 4 hours a day (Day 7 is shorter). If a day runs short, do the **Must** items and skip the rest.
 
-1. **Read** (45 min): the course-notes chapter for the day (`week7/ap-notes.pdf`, or https://diku-dk.github.io/ap-notes), then the week's README.
-2. **Re-open your own code** (60 min): your group's `aN/handin` and the week's `weekN/solution`. For each file, say in one sentence what it does and why it is designed that way. Diff your solution against the official one where one exists, and note any differences.
-3. **Answer the assignment's report questions from memory** (45 min) in `answers/dayN-*.md`. Only then compare with your submitted report and the TA feedback on Absalon.
-4. **Question bank** (60 min): that day's section of `QUESTION-BANK.md`. Write short, precise answers, like on the exam. For every "what does X evaluate to" question, **predict first, then check in GHCi**:
-   ```
-   cd aN/handin && cabal repl
-   ghci> import APL.AST
-   ghci> eval envEmpty (Add (CstInt 1) (CstInt 2))
-   ```
-5. **Cheat sheet** (20 min): add the 5–10 facts you would otherwise have to search for to `CHEAT-SHEET.md`.
+## The daily routine (Days 1–5)
 
-Tip: ask Claude to quiz you on a day's section, or to check your `answers/` file. That is fine while you prepare; AI is banned only *in* the exam.
+| Step | Time | What you do |
+|---|---|---|
+| 1. Read | 45 min | Read the day's sections of `EXAM-NOTES.md`. For every compendium page it mentions, **open the page** in `week7/compendium.pdf` and look at the code. This trains the lookups you will do in the exam. |
+| 2. Drill | 90 min | Answer the day's `QUESTION-BANK.md` questions **in writing**, 3–5 min each, as in the exam. Allowed: notes + compendium. **Must:** every ★ and (D) question. Then the unmarked ones if time remains. Write in `answers/dayN.md`. |
+| 3. Check | 30 min | Compare each answer with the notes and mark it ✅ / 🟡 / ❌ (see `answers/README.md`). For every ❌, write one line on **why**: didn't find it? didn't understand? misread the code? |
+| 4. Fix the notes | 20 min | Add anything you were missing to `EXAM-NOTES.md`, **in your own words**. Short handwritten notes in the margin of the printed copy also count. |
+| 5. (optional) GHCi | 20 min | Predict, then run, 2–3 of the day's expressions (commands below). |
+
+```
+cd a1/handin && cabal repl          # also works for a3, a4, a5 hand-ins
+ghci> import APL.AST
+ghci> eval envEmpty (Add (CstInt 1) (CstInt 2))
+```
+
+Tip: while you prepare, ask Claude to quiz you on a section or to mark your `answers/dayN.md`. AI is only banned *in* the exam.
 
 ---
 
-## Week 1 of revision: the sequential interpreter
+## Day 1: exam format + A1 (evaluator)
+- [ ] **Diagnostic (75 min, Must):** do `week7/exam-dummy.pdf` **cold**, before reading the notes, with only the compendium. This is your baseline, and it shows you the exam format.
+- [ ] Mark it with `week7/exam-dummy-solutions.pdf` → `answers/day1-diagnostic.md`. Note your 3 weakest topics.
+- [ ] Read `EXAM-NOTES.md` **§0, §G and §A1**. Practise the two lookup tables: find 5 random pages from them in the compendium.
+- [ ] Drill: `QUESTION-BANK.md` §0 and §1.
+- Understand: static scope and closures, eager `Let` and arguments, the loop bound evaluated in the **outer** scope, which error wins, and why a `ForLoop` always terminates.
 
-### Day 1 · Tue 27 Oct: Haskell basics + A1 (interpreting APL)
-- [ ] Notes ch. 1 · `week1/README.md` · compendium pp. 1–27
-- [ ] Re-read `a1/handin/src/APL/Eval.hs`, `AST.hs` (printExp), and `a1/NOTES.md`
-- [ ] A1 report questions 1–8 from memory → `answers/day1-a1.md`
-- [ ] Question bank §1 (W1/A1)
-- Key ideas: environments and **static (lexical) scope**, closures (`ValFun env v body`), **evaluation order** and which error comes first, `ForLoop` semantics (the bound is evaluated in the *outer* scope), eager `Let`, `TryCatch`, printer parenthesisation and its complexity.
+## Day 2: A2 (monads) + A3 (parsing)
+- [ ] Read **§A2 and §A3**.
+- [ ] **Must:** write these **by hand** until you can do them without looking, because they are the only real code the exam may ask for:
+  - `>>=` for both `EvalM` variants (§A2);
+  - the fixed `catch` (D 2.2.3);
+  - removing left recursion plus the `chain` parser (§G3);
+  - the right-associative `**` parser (§A3).
+- [ ] Drill: `QUESTION-BANK.md` §2 and §3.
+- Understand: `(Either Error a, State)` keeps effects and `Either Error (a, State)` rolls them back; `try` = rewind after consuming input; ordered `choice`; keywords vs names.
 
-### Day 2 · Wed 28 Oct: Monads + A2
-- [ ] Notes ch. 2 · `week2/README.md` · Wadler's *Essence of FP* (skim §1–2) · compendium pp. 28–55
-- [ ] Re-read `a2/handin/src/APL/Eval.hs` (`EvalM`, `catch`, Print, KvPut/KvGet) and `Check.hs`
-- [ ] A2 report questions 1–4 → `answers/day2-a2.md`
-- [ ] Question bank §2
-- Key ideas: writing `>>=` for a Reader+State+Error monad, **`(Either Error a, State)` vs `Either Error (a, State)`** (do effects survive an error?), Functor/Applicative from Monad, monad laws, `mapM`/`sequence` order, the O(n²) cost of `++ [x]`.
+## Day 3: A4 (free monads), the hardest topic
+- [ ] Read **§A4** and the course notes p.79–92 (free monads, "the recipe for other effects").
+- [ ] **Must:** explain *out loud* in 3 sentences each:
+  - why `e` must be a `Functor`;
+  - why `KvGetOp` has `Val -> a`;
+  - why `TryCatchOp a a` is wrong;
+  - why `break` is dynamically scoped.
+- [ ] Drill: `QUESTION-BANK.md` §4 and §0.1, §0.7.
+- Understand: one program, many interpreters; pure state vs database file; transaction = roll back on error but keep prints.
 
-### Day 3 · Thu 29 Oct: Parsing + A3
-- [ ] Notes ch. 3 · `week3/parsernotes.pdf` · compendium pp. 56–88
-- [ ] Re-read `a3/handin/src/APL/Parser.hs` line by line. For each `try`, say why it is there.
-- [ ] A3 report questions 1–5 → `answers/day3-a3.md`
-- [ ] Question bank §3
-- Key ideas: **removing left recursion** (`E ::= T E'`) while keeping left associativity via an accumulator (`chain`/`pExp'`), precedence levels as a grammar hierarchy, lexeme style (whitespace after each token), `lKeyword` + `notFollowedBy`, keyword rejection in `lVName`, **`try` = backtrack after consuming input**, ordered `choice` (`**` before `*`), application as `Atom+` folded left.
+## Day 4: A5 (QuickCheck) + A6/W6 (concurrency)
+- [ ] Read **§A5 and §A6**.
+- [ ] **Must:** for SPC, draw the message flow on paper for: `jobAdd` → job runs → `jobWait` reply; a timeout (ticker → `checkTimeouts` → `killThread`); `jobCancel`.
+- [ ] Drill: `QUESTION-BANK.md` §5 and §6.
+- Understand: `sized`/halving, `cover` vs `classify`, round-trip properties, where to fix a counterexample; sync vs async, why all state lives in one server thread, and catching exceptions in the job thread.
 
-### Day 4 · Fri 30 Oct: Free monads + A4
-- [ ] Notes ch. 4 · `week4/README.md` · compendium pp. 89–133
-- [ ] Re-read `a4/handin/src/APL/Monad.hs`, `InterpPure.hs`, `InterpIO.hs` and `a4/REPORT.md` (incl. the `break` bug you found)
-- [ ] A4 report questions 1–3 → `answers/day4-a4.md`
-- [ ] Question bank §4
-- Key ideas: `Free e a = Pure a | Free (e (Free e a))`, why `e` must be a `Functor`, `>>=` pushes the continuation into the leaves, effects with continuations (`KvGetOp Val (Val -> a)`), **one program, many interpreters** (pure vs IO), `TryCatchOp m1 m2 k` vs `TryCatchOp a a`, `TransactionOp (EvalM ()) a`, `looping`/`breakLoop` = **dynamic** scope.
+## Day 5: Week 7 (tuples, `&&`/`||`, three interpreters, KVDB)
+- [ ] Read **§W7** and the compendium p.215–216 (pure + simulated interpreters, side by side) and p.226 (KVDB).
+- [ ] **Must:** cover the "Pure / Sim / Concurrent" columns of the §W7 table and predict each row, then uncover it. Repeat until you get them all.
+- [ ] Drill: `QUESTION-BANK.md` §7.
+- Understand: `step` stops at the next `StepOp`; ties go to the left; the loser's effects stay; a `get` blocks in sim/concurrent but is an error in pure; deterministic vs not.
 
-### Day 5 · Sat 31 Oct: Property-based testing + A5
-- [ ] Notes ch. 5 · `week5/QuickCheckTestingforFunandProfit.pdf` · compendium pp. 134–165
-- [ ] Re-read `a5/handin/src/APL/Tests.hs` (genExp, shrink, expCoverage, parsePrinted, onlyCheckedErrors) and `a5/REPORT.md`
-- [ ] A5 report questions 1–5 → `answers/day5-a5.md`
-- [ ] Question bank §5
-- Key ideas: `Gen`, `sized`/`resize`, halving size for recursion, `oneof` vs `frequency`, generating variables from a small pool so that `Var` hits bound names, `shrink`, `cover`/`checkCoverage`/`classify`, round-trip `parse . print`, why a passing property can be meaningless, non-terminating generated programs.
+## Day 6: mock exam under exam conditions
+- [ ] **Print `EXAM-NOTES.md` today** (the version with your additions).
+- [ ] **Mock exam B** (`MOCK-EXAM.md`): 2 hours, printed notes + `ap-notes.pdf` + compendium only. No IDE, no GHCi.
+- [ ] Mark it with `MOCK-EXAM-SOLUTIONS.md` → `answers/day6-mock.md`. For every miss, write *why*.
+- [ ] Fix the notes for every miss. Then re-drill your weakest section from the question bank.
 
-### Day 6 · Sun 1 Nov: Checkpoint (lighter day)
-- [ ] **Timed half-mock:** dummy exam (`week7/exam-dummy.pdf`, *not* the solutions) sections 1 and 2.1–2.5, in `week7/answer-sheet.docx`. Allow 60 minutes.
-- [ ] Mark it against `exam-dummy-solutions.pdf`. For every miss, write *why* in `answers/day6-checkpoint.md`
-- [ ] Redo the weakest day's question-bank section
-- [ ] Update milestones / rest
+## Day 7: consolidate (≈2.5 h, stop early)
+- [ ] Redo the dummy exam (`week7/exam-dummy.pdf`) quickly, **with the notes**: aim for under 45 minutes. Compare with Day 1.
+- [ ] Re-read every ❌ / 🟡 line in `answers/`.
+- [ ] Final print of `EXAM-NOTES.md`. Tab or colour the section edges (G, A1–A6, W7) so you can flip to them quickly.
+- [ ] Logistics: start time and room at Eksamenshuset (Absalon), ID card, whether you can bring digital files to the exam PC or only paper, and how the Word file is handed in.
+- [ ] Evening: no studying. Sleep.
 
-## Week 2 of revision: concurrency, week 7, mocks
+## Exam day
+1. Skim all questions first (5 min). Answer the ones you recognise from the notes first.
+2. For each question: section → model answer/variant → adapt → **value + one reason**, 1–3 sentences.
+3. Stuck for more than 5 minutes? Write the concept you think applies, and move on. Come back at the end.
+4. Last 10 minutes: make sure that **every question has some answer**.
 
-### Day 7 · Mon 2 Nov: Concurrency + SPC (week 6)
-- [ ] Notes ch. 6 · `week6/README.md` · *Concurrent Haskell* paper (skim) · compendium pp. 166–188
-- [ ] Re-read `week6/solution` `GenServer.hs` and `SPC.hs`: `SPCM`, `handleMsg`, `checkTimeouts`, job states, `spcWaiting`
-- [ ] Question bank §6 (first half: GenServer/SPC)
-- Key ideas: threads + channels (`forkIO`, `Chan`, `MVar`), server loop with state, **sync vs async API** (`requestReply` vs `sendTo`), reply channels, why the server owns all state (sequential message handling = atomicity), timeouts via a ticker thread, `killThread`, catching exceptions in jobs, "blocked indefinitely on MVar".
+---
 
-### Day 8 · Tue 3 Nov: A6 (SPC with workers)
-- [ ] A6 text (compendium pp. 189–201) and `a6/a6-handout`
-- [ ] If your group has an A6 hand-in, re-read it. If not, sketch the protocol on paper: which messages SPC↔worker, who holds which state.
-- [ ] A6 report questions 1–5 → `answers/day8-a6.md`
-- [ ] Question bank §6 (second half: workers)
-- Key ideas: job queue + idle workers, **central vs decentral timeouts** (dummy 2.6.1), cancel/timeout/crash must leave the worker idle, what happens if a worker thread dies, the race between `jobCancel` (async) and `jobStatus`, `workerStop` on a busy worker.
-
-### Day 9 · Wed 4 Nov: Week 7 exercises A–C (tuples, while/step, `&&`/`||`)
-- [ ] `week7/README.md` tasks A–C · compare `week7/handout` vs `week7/solution` (`Parser.hs`, `Eval.hs`, `InterpPure.hs`)
-- [ ] Run the examples in the README in `cabal repl` inside `week7/solution`
-- [ ] Question bank §7 (A–C)
-- Key ideas: `"(" Exp ")"` vs tuple (the `try`), `x.i` projection as an Atom suffix, extending the grammar with `&&`/`||` precedence levels, where `evalStep` is inserted (loop bodies + function application), pure `OneOf` = left first, fall back to right on error.
-
-### Day 10 · Thu 5 Nov: Week 7 exercises D–F (simulated + concurrent interpreters, KVDB)
-- [ ] `week7/solution/src/APL/InterpSim.hs`, `KVDB.hs`, `InterpConcurrent.hs` (compendium pp. 213–226)
-- [ ] Trace by hand: `(1+2) || (3+4+5+6)`, `(loop p = 0 while true do p) || 1`, `get 0 && put 0 true` in pure vs sim vs concurrent
-- [ ] Question bank §7 (D–F)
-- Key ideas: `step` runs up to the next `StepOp` and no further, **interleaving** = round-robin stepping, a blocked `get` in the simulator (and what happens when *everything* is blocked), determinism of sim vs nondeterminism of the concurrent interpreter, IORefs to collect SPC job results, cancelling the loser in `||`, KVDB as a GenServer with a list of blocked readers.
-
-### Day 11 · Fri 6 Nov: Full mock exam #1
-- [ ] Whole dummy exam, timed, in the Word template, using **only** the PDFs you will have at the exam (notes + compendium + your cheat sheet). No IDE.
-- [ ] Mark it. Write down what slowed you down (finding pages? not knowing?) → `answers/day11-mock1.md`
-- [ ] Ask Claude for a fresh mock in the same style (new expressions, same assignments)
-
-### Day 12 · Sat 7 Nov: Mock #2 + weak spots
-- [ ] Take the fresh mock under exam conditions, then mark it
-- [ ] Spend the rest of the day on your two weakest topics only
-- [ ] Re-read all of `answers/`: every "I got this wrong because…" line
-
-### Day 13 · Sun 8 Nov: Consolidate (half day)
-- [ ] Finish and print `CHEAT-SHEET.md` + the compendium index from `README.md`
-- [ ] Logistics: start time, room at Eksamenshuset, ID, what is allowed on paper, whether the answer must be uploaded as .docx
-- [ ] Light skim of the dummy-exam solutions. Stop by the early evening and sleep properly.
-
-### Mon 9 Nov: Exam
-- Read every question first and do the easy ones first. Answer briefly; the dummy answers are 1–3 sentences.
-- If a question asks "what does X evaluate to", **state the value and give a one-line reason** (e.g. "the bound is evaluated in the outer scope").
-- Look things up in the compendium; you don't need to remember the code by heart.
+### If you lose a day
+Merge Days 4 and 5 (keep the **Must** items only), and keep Day 6 (the mock) no matter what. The mock and the printed notes matter more than finishing every drill.
