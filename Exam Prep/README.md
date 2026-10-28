@@ -6,10 +6,13 @@ Goal: **pass the written exam on Mon 9 Nov 2026** with one week of study, using 
 |---|---|---|
 | [STUDY-PLAN.md](STUDY-PLAN.md) | The 7-day plan, with checkboxes | Start here |
 | [EXAM-NOTES.md](EXAM-NOTES.md) | **The notes you bring to the exam**: page index, facts and model answers for every assignment and the dummy exam | Read daily; print on Day 6–7 |
+| [EXAM-NOTES.pdf](EXAM-NOTES.pdf) | The print version of the notes: a cover with section page numbers, every section starting on a new page, and a ruled page for your own additions | Print this on Day 6–7 |
 | [QUESTION-BANK.md](QUESTION-BANK.md) | Practice questions per assignment (★ = official report question, D = dummy exam) | Daily drill, Days 1–5 |
 | [MOCK-EXAM.md](MOCK-EXAM.md) | A fresh full mock exam (variants, not copies) | Day 6, under exam conditions |
 | [MOCK-EXAM-SOLUTIONS.md](MOCK-EXAM-SOLUTIONS.md) | Answer key for the mock | After the mock |
 | `answers/` | Your written answers, one file per day | Daily |
+
+**Rebuilding the PDF** after you edit the notes: `python "Exam Prep/print/build.py"` from the repo root (needs Edge, and `pip install markdown-it-py pypdf`). It takes a few seconds and overwrites `EXAM-NOTES.pdf`. The footer shows the build date and commit, so you can tell whether a printout is current.
 
 ## The exam: facts
 
