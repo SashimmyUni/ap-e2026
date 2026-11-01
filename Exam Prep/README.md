@@ -1,14 +1,14 @@
 # AP 2026: exam preparation
 
-Goal: **pass the written exam on Mon 9 Nov 2026** with one week of study, using the Exam Notes as the main tool.
+Goal: **pass the written exam on Mon 9 Nov 2026** in 9 days (31 Oct – 8 Nov), starting from no knowledge of the course or Haskell. You learn each topic first, then use the Exam Notes as the main tool.
 
 | File | What it is | When |
 |---|---|---|
-| [STUDY-PLAN.md](STUDY-PLAN.md) | The 7-day plan, with checkboxes | Start here |
-| [EXAM-NOTES.md](EXAM-NOTES.md) | **The notes you bring to the exam**: page index, facts and model answers for every assignment and the dummy exam | Read daily; print on Day 6–7 |
-| [EXAM-NOTES.pdf](EXAM-NOTES.pdf) | The print version of the notes: a cover with section page numbers, every section starting on a new page, and a ruled page for your own additions | Print this on Day 6–7 |
-| [QUESTION-BANK.md](QUESTION-BANK.md) | Practice questions per assignment (★ = official report question, D = dummy exam) | Daily drill, Days 1–5 |
-| [MOCK-EXAM.md](MOCK-EXAM.md) | A fresh full mock exam (variants, not copies) | Day 6, under exam conditions |
+| [STUDY-PLAN.md](STUDY-PLAN.md) | The 9-day plan, with checkboxes | Start here |
+| [EXAM-NOTES.md](EXAM-NOTES.md) | **The notes you bring to the exam**: page index, facts and model answers for every assignment and the dummy exam | Read daily after learning the topic; print on Day 8–9 |
+| [EXAM-NOTES.pdf](EXAM-NOTES.pdf) | The print version of the notes: a cover with section page numbers, every section starting on a new page, and a ruled page for your own additions | Print this on Day 8–9 |
+| [QUESTION-BANK.md](QUESTION-BANK.md) | Practice questions per assignment (★ = official report question, D = dummy exam) | Daily drill, Days 1–7 |
+| [MOCK-EXAM.md](MOCK-EXAM.md) | A fresh full mock exam (variants, not copies) | Day 8, under exam conditions |
 | [MOCK-EXAM-SOLUTIONS.md](MOCK-EXAM-SOLUTIONS.md) | Answer key for the mock | After the mock |
 | `answers/` | Your written answers, one file per day | Daily |
 
@@ -27,10 +27,11 @@ Goal: **pass the written exam on Mon 9 Nov 2026** with one week of study, using 
 
 ## Why this plan should get you a pass
 
-1. **Coverage:** every assignment and week 7 has a section in the notes. In the exam you never face a topic with nothing to write.
-2. **Lookup speed:** the notes start with a page index for the compendium and the course notes, and the plan makes you practise lookups every day.
-3. **Adaptation:** the question bank and the mock use *new* expressions, so you practise turning a model answer into an answer for the question in front of you.
-4. **Exam conditions** are rehearsed twice: the dummy exam on Day 1 (cold) and Day 7 (with notes), and the mock exam on Day 6.
+1. **Learn first:** each day teaches the topic from the course notes and runnable code before you touch the summary notes or any questions.
+2. **Coverage:** every assignment and week 7 has a section in the notes. In the exam you never face a topic with nothing to write.
+3. **Lookup speed:** the notes start with a page index for the compendium and the course notes, and the drills make you practise lookups every day.
+4. **Adaptation:** the question bank and the mock use *new* expressions, so you practise turning a model answer into an answer for the question in front of you.
+5. **Exam conditions** are rehearsed twice: the mock exam on Day 8 and the dummy exam as a speed test on Day 9.
 
 ## Your own material in this repo
 

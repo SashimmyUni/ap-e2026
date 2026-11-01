@@ -1,4 +1,4 @@
-# Mock exam B (for Day 6)
+# Mock exam B (for Day 8)
 
 A fresh exam in the style of `week7/exam-dummy.pdf`. The questions are **variants**, not copies, so you practise *adapting* the Exam Notes rather than copying them.
 

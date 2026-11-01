@@ -1,6 +1,6 @@
-# Day 1 diagnostic: dummy exam, cold
+# Day 9 speed test: dummy exam, with notes
 
-Date: Wed 28 Oct 2026 · Time limit: 75 min · Allowed: `week7/exam-dummy.pdf` + `week7/compendium.pdf` only (no EXAM-NOTES, no solutions, no GHCi)
+Date: Sun 8 Nov 2026 · Time limit: 45 min · Allowed: printed EXAM-NOTES, `week7/ap-notes.pdf`, `week7/compendium.pdf` (no solutions, no GHCi, no Claude)
 Started: __:__ · Finished: __:__
 
 Answer everything first. Then mark against `week7/exam-dummy-solutions.pdf`: ✅ right / 🟡 partly (what was missing) / ❌ wrong (why: misread the code? didn't know the concept? couldn't find the page?).

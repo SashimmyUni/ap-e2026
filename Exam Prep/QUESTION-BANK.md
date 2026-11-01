@@ -9,18 +9,18 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 
 | Section | Study day | Answers in `EXAM-NOTES.md` |
 |---|---|---|
-| §0 General | 1 (and 3) | §G |
+| §0 General | Q4: 1 · Q5–6: 2 · Q3: 3 · Q1, Q7: 4 · Q2: 5 | §G |
 | §1 A1 | 1 | §A1 |
 | §2 A2 | 2 | §A2 |
-| §3 A3 | 2 | §A3, §G3 |
-| §4 A4 | 3 | §A4 |
-| §5 A5 | 4 | §A5 |
-| §6 A6 | 4 | §A6 |
-| §7 Week 7 | 5 | §W7 |
+| §3 A3 | 3 | §A3, §G3 |
+| §4 A4 | 4 | §A4 |
+| §5 A5 | 5 | §A5 |
+| §6 A6 | 6 | §A6 |
+| §7 Week 7 | 7 | §W7 |
 
 ---
 
-## §0 General (Day 1; answers: §G)
+## §0 General (spread over Days 1–5, see the table; answers: §G)
 
 1. (D) Describe an advantage of representing a program's effects as data that an interpreter executes, rather than using `IO` directly.
 2. (D) A QuickCheck property passes 100 tests. Why might we still add a `cover` requirement?
@@ -62,7 +62,7 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 10. ★ In `TryCatch e1 e2`, if `e1` fails after some effects, are those effects visible in `e2`? Show the code change that would flip the behaviour.
 11. ★ Could you define `instance Monad m => Semigroup (m ())` / `Monoid (m ())`? What are `mempty` and `<>`? Argue the monoid laws from the monad laws.
 
-## §3 Week 3 + A3: parsing (Day 2; answers: §A3)
+## §3 Week 3 + A3: parsing (Day 3; answers: §A3)
 
 1. (D) In APL, how does the parser avoid parsing `get` as a variable name? What stops `getx` from parsing as `get x`? Does `if x y then z else w` parse, and why?
 2. Rewrite `E ::= E "+" E | E "*" E | int` so that it has no left recursion, `*` binds tighter than `+`, and both are left-associative.
@@ -78,7 +78,7 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 12. ★ Give an example where ordered `choice` matters.
 13. ★ How would you add line/block comments, and how much would change?
 
-## §4 Week 4 + A4: free monads (Day 3; answers: §A4)
+## §4 Week 4 + A4: free monads (Day 4; answers: §A4)
 
 1. Write `data Free e a`, its `Functor` instance and `>>=` from memory. Why must `e` be a `Functor`?
 2. Why does `KvGetOp` carry a continuation `(Val -> a)` while `KvPutOp` carries a plain `a`? What about `ErrorOp`, which has no `a`?
@@ -92,7 +92,7 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 10. ★ Why is `TryCatchOp` not `TryCatchOp a a`? What would go wrong?
 11. Your own A4 report found a `break` bug (43 ≠ 42). Explain it in two sentences, as you would at the exam.
 
-## §5 Week 5 + A5: property-based testing (Day 4; answers: §A5)
+## §5 Week 5 + A5: property-based testing (Day 5; answers: §A5)
 
 1. Why does a recursive generator need `sized` and halved sizes? What happens without them?
 2. Why should generated variable names come from a small pool? What would `onlyCheckedErrors` look like with fully random names?
@@ -106,7 +106,7 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 10. ★ Which assumption behind `checkExp` is unjustified, and which counterexample showed it?
 11. ★ Name a class of expressions your generator essentially never produces but should. How would you change the generator or `expCoverage`?
 
-## §6 Week 6 + A6: concurrency, GenServer, SPC (Day 4; answers: §A6)
+## §6 Week 6 + A6: concurrency, GenServer, SPC (Day 6; answers: §A6)
 
 1. What does a server loop look like (state, message type, `receive`, recurse)? Why is all mutable state kept *inside* the loop?
 2. Synchronous vs asynchronous API calls: how is each implemented with `Chan` and a reply channel? Which SPC functions are which?
@@ -122,7 +122,7 @@ Practice questions in the style of `week7/exam-dummy.pdf`: short answers, reason
 12. ★ `jobCancel` (async), then immediately `jobStatus`: is `DoneCancelled` guaranteed, or is there a race?
 13. `workerStop` on a busy worker: list the messages exchanged, in order.
 
-## §7 Week 7: tuples, `&&`/`||`, three interpreters (Day 5; answers: §W7)
+## §7 Week 7: tuples, `&&`/`||`, three interpreters (Day 7; answers: §W7)
 
 **A–C**
 1. How does the parser tell `(e)`, `()` and `(e1, e2, …)` apart? Why is `try` needed?
