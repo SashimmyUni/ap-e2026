@@ -77,13 +77,13 @@ are organised by book chapter — match the chapter number in the video title. W
 
 ## Stage 0 — Setup (Day 1, 40 min)
 
-- [ ] **0.1** Confirm on Absalon that you may sit the exam
+- [x] **0.1** Confirm on Absalon that you may sit the exam
   **Do** · You need at least 12 assignment points in total and at least 1 point in each
   of A1–A5. While you are there, note the **start time**, the **length**, and whether you
   may bring **digital files**.
   **Done when** · `Exam Prep/answers/logistics.md` is filled in. Nothing else in this
   plan matters if the first line of that file is not a yes.
-- [ ] **0.2** Build everything once
+- [x] **0.2** Build everything once
   **Do** · `python "Exam Prep/study/study.py" build`, then `doctor`.
   It compiles eight projects and takes a few minutes. Do it now so that no later step
   waits on a compile.
