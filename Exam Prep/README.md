@@ -1,10 +1,12 @@
 # AP 2026: exam preparation
 
-Goal: **pass the written exam on Mon 9 Nov 2026** in 9 days (31 Oct – 8 Nov), starting from no knowledge of the course or Haskell. You learn each topic first, then use the Exam Notes as the main tool.
+Goal: **pass the written exam on Mon 9 Nov 2026**, starting from no knowledge of the course or Haskell. You learn each topic first, then use the Exam Notes as the main tool.
 
 | File | What it is | When |
 |---|---|---|
-| [STUDY-PLAN.md](STUDY-PLAN.md) | The 9-day plan, with checkboxes | Start here |
+| [STEP-BY-STEP.md](STEP-BY-STEP.md) | **59 numbered steps** in 9 stages: what to read, what to watch, what to do, how you know you are done. Driven from the terminal by `study/study.py` | Start here |
+| [STUDY-PLAN.md](STUDY-PLAN.md) | The same material as a day-by-day plan, written for a 9-day run starting 31 Oct. Useful as the overview; the steps are the spine | Background |
+| `study/study.py` | `next` prints the step you are on, `run N` runs that stage's code after you predict the answers, `done N.M` ticks a step off, `status` shows progress. See the table in STEP-BY-STEP.md | Every day |
 | [EXAM-NOTES.md](EXAM-NOTES.md) | **The notes you bring to the exam**: page index, facts and model answers for every assignment and the dummy exam | Read daily after learning the topic; print on Day 8–9 |
 | [EXAM-NOTES.pdf](EXAM-NOTES.pdf) | The print version of the notes: a cover with section page numbers, every section starting on a new page, and a ruled page for your own additions | Print this on Day 8–9 |
 | [QUESTION-BANK.md](QUESTION-BANK.md) | Practice questions per assignment (★ = official report question, D = dummy exam) | Daily drill, Days 1–7 |

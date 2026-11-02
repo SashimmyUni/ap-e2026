@@ -1,0 +1,17 @@
+# part: A4 - one program, many interpreters (pure interpreter)
+# dir: a4/handin
+# load: :m + APL.AST APL.Eval APL.InterpPure
+? Print is an EFFECT now. Where does the text come out in a PURE interpreter?
+runEval (eval (Print "hello" (CstInt 1)))
+? Two prints inside one Add: in which order, and why is that guaranteed?
+runEval (eval (Add (Print "a" (CstInt 1)) (Print "b" (CstInt 2))))
+? Put then get on the same key
+runEval (eval (Let "x" (KvPut (CstInt 0) (CstInt 7)) (KvGet (CstInt 0))))
+? QB section 4 Q7: a transaction that fails after a KvPut
+runEval (eval (Transaction (Let "x" (KvPut (CstInt 0) (CstInt 1)) (Div (CstInt 1) (CstInt 0)))))
+? ... so after that transaction, what is in key 0?
+runEval (eval (Let "t" (TryCatch (Transaction (Let "x" (KvPut (CstInt 0) (CstInt 1)) (Div (CstInt 1) (CstInt 0)))) (CstInt 0)) (KvGet (CstInt 0))))
+? A transaction that succeeds, and a print inside it
+runEval (eval (Let "t" (Transaction (Print "inside" (KvPut (CstInt 0) (CstInt 9)))) (KvGet (CstInt 0))))
+? QB section 4 Q6: Break out of a loop from inside a lambda
+runEval (eval (ForLoop ("p", CstInt 0) ("i", CstInt 10) (Apply (Lambda "x" (Break (Var "i"))) (CstInt 0))))

@@ -1,0 +1,17 @@
+# part: A5 - generators and properties
+# dir: week5/solution
+# load: :m + APL.AST APL.Tests Test.QuickCheck
+? Run this several times. How many of the expressions are actually interesting?
+generate (genExp 4)
+generate (genExp 4)
+generate (genExp 4)
+? Size 0: what can a generator produce when it has no size budget left?
+generate (genExp 0)
+? The printer, which the round-trip property depends on
+printExp (Add (CstInt 1) (CstInt 2))
+? A property that holds
+quickCheck (\x -> x + 0 == (x :: Int))
+? A property that does not. Read the shrunk counterexample, not just the failure.
+quickCheck (\x y -> x - y == (y - x :: Int))
+? classify shows the distribution that cover would make into a requirement
+quickCheck (\x -> classify (x > (0::Int)) "positive" (x + 0 == x))

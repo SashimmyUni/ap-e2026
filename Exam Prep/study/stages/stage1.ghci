@@ -1,0 +1,31 @@
+# part: Week 1 - the evaluator that returns Either
+# dir: week1/solution
+# load: :m + APL.AST APL.Eval
+? Simple arithmetic: what comes back, and what is it wrapped in?
+eval envEmpty (Add (CstInt 1) (CstInt 2))
+? Division by zero: which constructor of Either, and what is inside it?
+eval envEmpty (Div (CstInt 1) (CstInt 0))
+? A Let: what is the value, and what does env look like while the body runs?
+eval envEmpty (Let "x" (CstInt 2) (Add (Var "x") (CstInt 1)))
+? An unbound variable
+eval envEmpty (Var "x")
+
+# part: A1 - the full language (your group's hand-in)
+# dir: a1/handin
+# load: :m + APL.AST APL.Eval
+? A loop: p starts at 1 and doubles 3 times
+eval envEmpty (ForLoop ("p", CstInt 1) ("i", CstInt 3) (Mul (Var "p") (CstInt 2)))
+? Applying a lambda
+eval envEmpty (Apply (Lambda "x" (Add (Var "x") (CstInt 1))) (CstInt 41))
+? QB section 1 Q1: two errors in one Add - which one wins?
+eval envEmpty (Add (Div (CstInt 1) (CstInt 0)) (Var "x"))
+? ... and now with the operands swapped. Same answer or not?
+eval envEmpty (Add (Var "x") (Div (CstInt 1) (CstInt 0)))
+? QB section 1 Q5: comparing an Integer with a Bool
+eval envEmpty (Eql (CstInt 1) (CstBool True))
+? QB section 1 Q4: the closure captured y = 1, then y was rebound to 100
+eval envEmpty (Let "y" (CstInt 1) (Let "f" (Lambda "x" (Add (Var "x") (Var "y"))) (Let "y" (CstInt 100) (Apply (Var "f") (CstInt 1)))))
+? TryCatch over a failing expression
+eval envEmpty (TryCatch (Div (CstInt 1) (CstInt 0)) (CstInt 42))
+? QB section 1 Q11: how does printExp parenthesise?
+printExp (Add (CstInt 1) (Mul (CstInt 2) (CstInt 3)))

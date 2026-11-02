@@ -1,0 +1,13 @@
+# part: Week 2 - the same language, monadic
+# dir: week2/solution
+# load: :m + APL.AST APL.Eval
+? Same Let as yesterday. What changed in the ANSWER, and what changed in the CODE?
+runEval (eval (Let "x" (CstInt 2) (Add (Var "x") (CstInt 1))))
+? Failure: who is doing the Left-checking now that eval no longer does it?
+runEval (eval (Div (CstInt 1) (CstInt 0)))
+? A closure again - compare with yesterday's env plumbing
+runEval (eval (Apply (Lambda "x" (Add (Var "x") (CstInt 1))) (CstInt 41)))
+? TryCatch in the monadic evaluator
+runEval (eval (TryCatch (Div (CstInt 1) (CstInt 0)) (CstInt 42)))
+? Nested TryCatch: QB section 1 Q10 territory
+runEval (eval (TryCatch (TryCatch (Var "x") (Div (CstInt 1) (CstInt 0))) (CstInt 7)))

@@ -1,0 +1,27 @@
+# part: Week 7 - the same program under three interpreters
+# dir: week7/solution
+# load: :m + APL.Parser APL.Eval
+# load: import qualified APL.InterpPure as Pure
+# load: import qualified APL.InterpSim as Sim
+# load: let try_ run s = either id (show . run . eval) (parseAPL "" s)
+? OneOf in the PURE interpreter: which side wins, and is it concurrent at all?
+try_ Pure.runEval "(1+2) || (3+4+5+6)"
+? The same program in the SIMULATED interpreter. Ties go which way?
+try_ Sim.runEval "(1+2) || (3+4+5+6)"
+? One side never finishes. Does the other still win?
+try_ Sim.runEval "(loop p = 0 while true do p) || 1"
+? BothOf, where one side fails
+try_ Pure.runEval "(1/0) && 5"
+try_ Sim.runEval "(1/0) && 5"
+? QB section 7 Q8: a get on an empty store. An error, or blocked?
+try_ Pure.runEval "get 0 && put 0 true"
+try_ Sim.runEval "get 0 && put 0 true"
+? QB section 7 Q2: tuples and projection. Which index is the first element?
+try_ Pure.runEval "(1,2).0"
+try_ Pure.runEval "(1,2).1"
+? ... and out of range
+try_ Pure.runEval "(1,2).2"
+? A 1-element tuple: the AST allows it, the grammar does not
+try_ Pure.runEval "(1).0"
+? A tuple through a variable
+try_ Pure.runEval "let x = (1,2) in x.0"

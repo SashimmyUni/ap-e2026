@@ -1,0 +1,21 @@
+# part: A3 - the parser
+# dir: a3/handin
+# load: :m + APL.Parser
+? Precedence: which of + and * binds tighter, and how does the tree show it?
+parseAPL "" "1 + 2 * 3"
+? Associativity: is this (x-y)-z or x-(y-z)?
+parseAPL "" "x - y - z"
+? Function application: how does f x y associate?
+parseAPL "" "f x y"
+? A keyword followed by a variable
+parseAPL "" "get x"
+? QB section 3 Q1: the same letters with no space. Keyword or variable?
+parseAPL "" "getx"
+? QB section 3 Q10: ** is right-associative, and * is a prefix of it
+parseAPL "" "2 ** 3 ** 2"
+? An if-expression
+parseAPL "" "if x then y else z"
+? QB section 3 Q7: a lambda as a bare function argument
+parseAPL "" "f \\x -> x"
+? Trailing junk: this is what eof is for
+parseAPL "" "1 + 2 )"

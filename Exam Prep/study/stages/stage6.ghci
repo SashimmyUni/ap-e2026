@@ -1,0 +1,28 @@
+# part: A6 - SPC, the job server
+# dir: week6/solution
+# load: :m + SPC
+# load: import Control.Concurrent (threadDelay)
+? Starting the server. What is the value you get back, really?
+s <- startSPC
+:t s
+? Adding a job. Note that it returns IMMEDIATELY - the asynchronous half.
+j <- jobAdd s (Job (threadDelay 100000) 1)
+? Status straight away, without waiting
+jobStatus s j
+? Waiting: the synchronous half, implemented with a reply channel
+jobWait s j
+? ... and the status now
+jobStatus s j
+? A job that throws. Does it take the server down with it?
+j2 <- jobAdd s (Job (error "boom") 1)
+jobWait s j2
+? ... and the server is still alive afterwards:
+j3 <- jobAdd s (Job (threadDelay 1000) 1)
+jobWait s j3
+? A job that runs for 10 s with a 1 s limit
+j4 <- jobAdd s (Job (threadDelay 10000000) 1)
+jobWait s j4
+? QB section 6 Q12: cancel a long job, then ask at once. Guaranteed, or a race?
+j5 <- jobAdd s (Job (threadDelay 10000000) 60)
+jobCancel s j5
+jobStatus s j5
