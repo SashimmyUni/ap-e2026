@@ -88,13 +88,13 @@ are organised by book chapter — match the chapter number in the video title. W
   It compiles eight projects and takes a few minutes. Do it now so that no later step
   waits on a compile.
   **Done when** · `doctor` prints `All good.`
-- [ ] **0.3** See the target
+- [x] **0.3** See the target
   **Material** · `week7/exam-dummy.pdf`
   **Do** · Read it. **Do not answer it** — you will use it as a timed test on Day 7.
   Notice the shape: 1–3 sentences per answer, almost no code writing, and questions of
   the form "what does this evaluate to, and why?"
   **Done when** · You can say in one sentence what kind of answer the exam wants.
-- [ ] **0.4** Learn to navigate the notes
+- [x] **0.4** Learn to navigate the notes
   **Material** · [EXAM-NOTES.md](EXAM-NOTES.md) §0
   **Do** · §0 is a page index into the compendium and the course notes. Pick five entries
   and actually open those pages in the PDFs.
@@ -106,14 +106,14 @@ are organised by book chapter — match the chapter number in the video title. W
 The course never teaches Haskell syntax, so this stage does. You are learning to **read**
 Haskell and trace it by hand, not to write it.
 
-- [ ] **1.1** Haskell syntax, part one: the basics
+- [x] **1.1** Haskell syntax, part one: the basics
   **Video** · [Functional Programming in Haskell](https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3)
   — chapters **2** (first steps), **3** (types and classes), **4** (defining functions)
   **Material** · the same chapters of *Programming in Haskell* if you prefer reading
   **Do** · Skip the book's exercises. Watch for: function type signatures, guards,
   `where`, and how a function is defined by several equations.
   **Done when** · You can read `f :: Int -> Int -> Bool` aloud and say what it means.
-- [ ] **1.2** Haskell syntax, part two: the parts the course actually uses
+- [x] **1.2** Haskell syntax, part two: the parts the course actually uses
   **Video** · same playlist — chapters **6** (recursion), **7** (higher-order functions),
   **8** (declaring types and classes)
   **Do** · **Chapter 8 is the important one.** `data` declarations, constructors and
@@ -121,7 +121,7 @@ Haskell and trace it by hand, not to write it.
   understand one of these three, make it 6 or 7, not 8.
   **Done when** · You can write out a `data` type with three constructors, one of which
   holds two fields, and pattern match on it.
-- [ ] **1.3** Read real Haskell for the first time
+- [x] **1.3** Read real Haskell for the first time
   **Material** · `week1/lec-tue/lecture.hs`
   **Do** · Read it top to bottom. Expect not to follow all of it. For each definition,
   say out loud what its type signature promises.
