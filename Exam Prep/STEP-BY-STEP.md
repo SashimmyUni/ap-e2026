@@ -126,7 +126,7 @@ Haskell and trace it by hand, not to write it.
   **Do** · Read it top to bottom. Expect not to follow all of it. For each definition,
   say out loud what its type signature promises.
   **Done when** · You have stopped being surprised by the syntax.
-- [ ] **1.4** Meet APL, the language the whole course builds
+- [x] **1.4** Meet APL, the language the whole course builds
   **Material** · `week1/README.md`, from *Getting started* to *Adding Variables*, with
   `week1/solution/src/APL/Eval.hs` open beside it
   **Do** · Follow it as a reading exercise. APL is a tiny expression language; the course
